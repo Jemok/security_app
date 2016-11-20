@@ -168,7 +168,7 @@
                         <tbody>
                         @foreach($products as $product)
                             <tr>
-                                <td>{{ $product->product_name }}</td>
+                                <td>{!!  $product->product_name !!}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->price }}</td>
                             </tr>
