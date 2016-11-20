@@ -75,7 +75,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Security Application
+                    Security Akot
                 </div>
 
                 <div class="links">
