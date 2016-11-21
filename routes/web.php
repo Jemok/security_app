@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index');
 
 Route::post('sql-injection-vulnerable', 'SQLInjectionController@inject');
 
+Route::post('sql-injection-protected', 'SQLInjectionController@protectedSql');
+
+
 Route::get('delete-user', 'CSRFController@delete');
 
 Route::post('add-product', 'CrossScriptingController@store');

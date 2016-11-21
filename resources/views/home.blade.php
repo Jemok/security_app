@@ -29,7 +29,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">User ID</label>
 
                             <div class="col-md-6">
                                 <input id="user_id" type="text" class="form-control" name="user_id" value="{{ old('user_id') }}">
@@ -49,22 +49,75 @@
                                 </button>
                             </div>
 
-                            @if(isset($results))
-                                @foreach($results as $result)
+                            @if(isset($results_sql))
+                                @foreach($results_sql as $sql)
                                   <div class="col-md-12 alert-danger">
-                                     ID: {{ $result->id }}
-                                     Name: {{ $result->name }}
-                                     Email: {{ $result->email }}
+                                     ID: {{ $sql->id }}
+                                     Name: {{ $sql->name }}
+                                     Email: {{ $sql->email }}
 
                                   </div>
                                 @endforeach
                             @endif
                         </div>
                     </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Cross-site Request Forgery</div>
+
+                <div class="panel-body">
+
+                    <h5>
+                        To protect this query from SQL injection, you need to rewrite it by replacing the parameters with question marks in the query and then pass the values in an array as a second argument to the raw method
+                    </h5>
+                    <form action="{{ url('sql-injection-protected') }}" method="post">
+
+
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">User ID</label>
+
+                            <div class="col-md-6">
+                                <input id="user_id" type="text" class="form-control" name="user" value="{{ old('user') }}">
+
+                                @if ($errors->has('use'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('user') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Do SQL Injection
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    @if(isset($result))
+                        <div class="col-md-12 alert-danger">
+                            ID: {{ $result->id }}
+                            Name: {{ $result->name }}
+                            Email: {{ $result->email }}
+
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

@@ -10,8 +10,13 @@
 
     <title>{{ config('app.name', 'Security Application') }}</title>
 
+
+
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+          rel="stylesheet" type="text/css" />
 
     <!-- Scripts -->
     <script>
@@ -81,7 +86,29 @@
         @yield('content')
     </div>
 
+    <script src="{{ asset('js/jquery.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+    <script>
+        $.validate({
+            modules : 'security',
+            onModulesLoaded : function() {
+                var optionalConfig = {
+                    fontSize: '12pt',
+                    padding: '4px',
+                    bad : 'Very bad',
+                    weak : 'Weak',
+                    good : 'Good',
+                    strong : 'Strong'
+                };
+
+                $('input[name="pass"]').displayPasswordStrength(optionalConfig);
+            }
+        });
+    </script>
+
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+
 </body>
 </html>
